@@ -1,4 +1,5 @@
 using CW_10.Data;
+using CW_10.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,9 @@ builder.Services.AddDbContext<MasterContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
+
+builder.Services.AddScoped<IDbService, DbService>();
+
 
 var app = builder.Build();
 
